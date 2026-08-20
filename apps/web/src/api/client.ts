@@ -2,8 +2,8 @@ const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
 
 export interface VideoSummary {
   videoId: string;
-  originalFilename: string | null;
-  processingStatus: 'PENDING' | 'PROCESSING' | 'COMPLETED' | 'FAILED';
+  originalFileName: string | null;
+  processingStatus: 'pending' | 'processing' | 'completed' | 'failed';
   streamUrl: string | null;
   createdAt: string;
 }

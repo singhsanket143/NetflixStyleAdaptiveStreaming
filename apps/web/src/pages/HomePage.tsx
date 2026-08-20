@@ -38,16 +38,16 @@ export default function HomePage() {
               }}
             >
               <div>
-                <strong>{video.originalFilename ?? video.videoId}</strong>
+                <strong>{video.originalFileName || 'Untitled video'}</strong>
+                <div>
+                  <Link to={`/stream/${video.videoId}`}>{video.videoId}</Link>
+                </div>
                 <div>
                   <span className={`status status-${video.processingStatus.toLowerCase()}`}>
                     {video.processingStatus}
                   </span>
                 </div>
               </div>
-              {video.processingStatus === 'COMPLETED' && (
-                <Link to={`/stream/${video.videoId}`}>Watch</Link>
-              )}
             </li>
           ))}
         </ul>
