@@ -40,12 +40,12 @@ export async function transcodeResolution(
         ffmpeg(inputPath)
         .outputOptions([
             `-vf scale=${resolution.width}:${resolution.height}`, // scale the video to the resolution
-            `-b:v ${resolution.bitRate}`, // set the video bitrate
+            `-b:v ${resolution.bitRate}k`, // set the video bitrate
             '-codec:v libx264', // use the x264 codec
             '-codec:a aac', // use the aac codec
             '-hls_time 10', // set the hls time to 10 seconds
             '-hls_playlist_type vod', // set the hls playlist type to vod
-            `hls_segment_filename ${path.join(variantOutput, 'segment-%05d.ts')}`
+            `-hls_segment_filename ${path.join(variantOutput, 'segment-%05d.ts')}`
         ])
         .output(variantPlaylist)
         .on('end', () => {
