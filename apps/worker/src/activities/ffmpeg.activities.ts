@@ -75,7 +75,7 @@ export async function writeMasterPlaylist(
 
     await fs.mkdir(outputPath, { recursive: true });
 
-    await fs.writeFile(writeMasterPlaylist, resolutionEntries.join('\n'));
+    await fs.writeFile(writeMasterPlaylist, `#EXTM3U\n${resolutionEntries.join('\n')}\n`);
 
     return `{outputRelativePath}${path.sep}master.m3u8`;
 }

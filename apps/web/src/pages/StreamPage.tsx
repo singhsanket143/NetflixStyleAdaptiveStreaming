@@ -65,10 +65,6 @@ export default function StreamPage() {
   return (
     <main className="container">
       <div className="card">
-        <div className="notice">
-          UI is ready. Connect <code>getVideoStatus()</code> in Lesson 6 after the API is implemented.
-        </div>
-
         <h1>Stream Preview</h1>
         <p>
           Video ID: <code>{videoId}</code>
@@ -83,18 +79,14 @@ export default function StreamPage() {
           </p>
         )}
 
-        {!video && <p>Waiting for status from API...</p>}
-
         {video?.processingStatus === 'COMPLETED' ? (
           <video ref={videoRef} controls />
         ) : (
-          video && (
-            <p>
-              {video.processingStatus === 'FAILED'
-                ? 'Processing failed. Check worker logs.'
-                : 'Waiting for Temporal workers to finish FFmpeg transcoding...'}
-            </p>
-          )
+          <p>
+            {video?.processingStatus === 'FAILED'
+              ? 'Processing failed. Check worker logs.'
+              : 'Waiting for Temporal workers to finish FFmpeg transcoding...'}
+          </p>
         )}
 
         <p style={{ marginTop: '1rem' }}>
